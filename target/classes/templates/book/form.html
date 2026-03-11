@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add/Edit Book</title>
+</head>
+<body>
+<h1>Add / Edit Book</h1>
+
+<form th:action="@{/books/save}" th:object="${book}" method="post">
+
+  <label>Title:</label>
+  <input type="text" th:field="*{title}" />
+  <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></div>
+  <br/>
+
+  <label>Author:</label>
+  <input type="text" th:field="*{author}" />
+  <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red"></div>
+  <br/>
+
+  <label>Genre:</label>
+  <select th:field="*{genre.id}">
+    <option value="" disabled selected>-- Select Genre --</option>
+    <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+  </select>
+  <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+  <br/>
+
+  <label>Publisher:</label>
+  <select th:field="*{publisher.id}">
+    <option value="" disabled selected>-- Select Publisher --</option>
+    <option th:each="publisher : ${publishers}" th:value="${publisher.id}" th:text="${publisher.name}"></option>
+  </select>
+  <div th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"></div>
+  <br/>
+
+  <button type="submit">Save</button>
+  <input type="hidden" th:field="*{id}" />
+
+</form>
+
+<a th:href="@{/books}">Back to Book List</a>
+</body>
+</html>
