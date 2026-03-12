@@ -1,7 +1,9 @@
 /target/
+/out/
+/build/
 *.class
-.idea/
-*.iml
-.DS_Store
 *.log
+*.iml
+.idea/
+.DS_Store
 spring-boot-devtools.properties
