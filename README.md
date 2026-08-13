@@ -1,78 +1,343 @@
+
 # Book Management System
 
+A Java Spring Boot web application for managing books, genres, and publishers through a structured MVC architecture, with CRUD operations, Thymeleaf-based web pages, JPA persistence, validation, and automated testing.
+
 ## Project Overview
-This project is a **Book Management System** built using **Spring Boot** with **Thymeleaf templates** for the web user interface and a relational database (H2, MySQL, or PostgreSQL) connected via **JPA**.  
 
-The application allows users to **manage books, genres, and publishers**, providing full CRUD (Create, Read, Update, Delete) functionality for each domain model.
+This project demonstrates the development of a web-based **Book Management System** using **Spring Boot**.
 
----
+The application models a small library/book management domain where users can manage:
 
-## Domain Model
+- Books
+- Genres
+- Publishers
 
-### Book (Entity)
-- **Properties:** Title, Author  
-- **Relationships:** Genre, Publisher  
+The project focuses on applying common enterprise application patterns, including:
 
-### Genre (Value Object)
-- **Properties:** Name  
+- Model-View-Controller (MVC) architecture
+- Service-layer business logic
+- Repository-based data access
+- CRUD operations
+- Server-side web rendering with Thymeleaf
+- Relational database persistence using JPA
+- Input validation
+- Automated testing
 
-### Publisher (Entity)
-- **Properties:** Name, Address  
+## Business Purpose
 
----
+The system provides functionality for maintaining book-related information in a structured application.
 
-## Features
+A book is associated with a genre and publisher, allowing users to manage the relationships between these domain objects.
 
-- **CRUD Operations** for Books, Genres, and Publishers in all layers (domain, service, database)  
-- **User Interface** to add, update, delete, and list entities using **Thymeleaf templates**  
-- Proper **validation** for required fields  
-- **Navigation** between entities in the UI  
-- Graceful handling of **null values** in the UI (e.g., showing “None” if a field is empty)  
-- **MVC architecture**: controllers, service layers, and repositories for proper layering and business logic  
-- **Relational Database Support:** H2 (in-memory or file), MySQL, PostgreSQL  
-- **Testing:** Unit tests using **JUnit** and **Mockito** for CRUD operations  
-- **Modeling:** Class diagrams in **PlantUML** to visualize the domain and MVC roles  
+### Main Domain Objects
 
----
+#### Book
+
+Represents a book managed by the system.
+
+Example information includes:
+
+- Title
+- Author
+- Genre
+- Publisher
+
+#### Genre
+
+Represents a classification/category for books.
+
+Example information:
+
+- Name
+
+#### Publisher
+
+Represents the organization or person responsible for publishing a book.
+
+Example information includes:
+
+- Name
+- Address
+
+## Key Features
+
+### Book Management
+
+- Create books
+- View books
+- Update books
+- Delete books
+- Associate books with genres
+- Associate books with publishers
+
+### Genre Management
+
+- Create genres
+- View genres
+- Update genres
+- Delete genres
+
+### Publisher Management
+
+- Create publishers
+- View publishers
+- Update publishers
+- Delete publishers
+
+### Web Interface
+
+The application uses **Thymeleaf** to provide server-rendered web pages for interacting with the system.
+
+The interface supports:
+
+- Listing entities
+- Adding records
+- Updating records
+- Deleting records
+- Navigating between related entities
+
+### Validation
+
+The application includes validation for required data fields to help prevent invalid or incomplete records.
+
+## Application Architecture
+
+The application follows a layered **MVC architecture**:
+
+```text
+                    User
+                     |
+                     v
+              Thymeleaf UI
+                     |
+                     v
+               Controller
+                     |
+                     v
+                Service
+                     |
+                     v
+               Repository
+                     |
+                     v
+              Relational DB
+````
+
+### Controller Layer
+
+Handles incoming web requests and coordinates the appropriate application operations.
+
+### Service Layer
+
+Contains the application's business logic and separates business operations from the web and persistence layers.
+
+### Repository Layer
+
+Provides data-access functionality for storing and retrieving domain objects using JPA.
+
+### Domain / Model Layer
+
+Represents the core business entities:
+
+* Book
+* Genre
+* Publisher
+
+### View Layer
+
+Thymeleaf templates provide the web interface used to interact with the application.
 
 ## Technology Stack
 
-- **Backend:** Java, Spring Boot  
-- **UI:** Thymeleaf Templates  
-- **Database:** H2 / MySQL / PostgreSQL via JPA  
-- **Testing:** JUnit, Mockito  
-- **Modeling:** PlantUML  
+| Technology               | Purpose                                |
+| ------------------------ | -------------------------------------- |
+| Java                     | Backend programming language           |
+| Spring Boot              | Application framework                  |
+| Spring MVC               | Web application architecture           |
+| Thymeleaf                | Server-side HTML rendering             |
+| Spring Data JPA          | Persistence and repository abstraction |
+| Hibernate                | ORM / database interaction             |
+| H2 / Relational Database | Data persistence                       |
+| Maven                    | Build and dependency management        |
+| JUnit                    | Automated testing                      |
+| Mockito                  | Unit-test mocking                      |
+| PlantUML                 | System and domain modelling            |
 
----
-## Folder Structure (Example)
+## Project Structure
 
+```text
+springboot_book_management/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── ...
+│   │   │
+│   │   └── resources/
+│   │       └── ...
+│   │
+│   └── test/
+│       └── java/
+│           └── ...
+│
+├── .gitignore
+├── pom.xml
+└── README.md
+```
 
-BookManagementSystem/
-├─ src/
-│ ├─ main/
-│ │ ├─ java/com/example/bookmanagement/
-│ │ │ ├─ controller/
-│ │ │ ├─ service/
-│ │ │ ├─ domain/
-│ │ │ └─ repository/
-│ │ └─ resources/
-│ │ ├─ templates/ # Thymeleaf UI templates
-│ │ └─ application.properties
-├─ test/
-│ └─ java/... # Unit tests
-├─ pom.xml
-└─ README.md
+The project separates production code from test code using the standard Maven project structure.
 
-Configure the database connection in application.properties or application.yml
+## Data and Persistence
 
-Run the Spring Boot application:
+The application uses **JPA** to map domain objects to relational database structures.
+
+Depending on the project configuration, a relational database such as **H2, MySQL, or PostgreSQL** can be used.
+
+Database configuration is managed through the Spring Boot application configuration.
+
+## Testing
+
+The project includes a dedicated test structure under:
+
+```text
+src/test/
+```
+
+Testing is used to validate application behaviour and business logic.
+
+The project uses:
+
+* **JUnit** for automated testing
+* **Mockito** for mocking dependencies in unit tests
+
+## Running the Application
+
+### Prerequisites
+
+Make sure you have:
+
+* Java installed
+* Maven available, or use the Maven Wrapper included with the project
+* A configured relational database if required by the application configuration
+
+### Using Maven
+
+From the project root:
+
+```bash
 mvn spring-boot:run
+```
 
-Access the application in a browser at:
+If the Maven Wrapper is available:
+
+### Linux / macOS
+
+```bash
+./mvnw spring-boot:run
+```
+
+### Windows
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+The application can then be accessed through the configured Spring Boot port, typically:
+
+```text
 http://localhost:8080
+```
 
-Use the UI to add, update, delete, and list books, genres, and publishers.
+## Running Tests
 
-Testing
-Run JUnit tests to validate CRUD operations and business logic
-Use Mockito for mocking dependencies in unit tests
+Run the automated tests with:
+
+```bash
+mvn test
+```
+
+Or using the Maven Wrapper:
+
+### Linux / macOS
+
+```bash
+./mvnw test
+```
+
+### Windows
+
+```bash
+mvnw.cmd test
+```
+
+## Design and Modelling
+
+The project also includes domain/system modelling using **PlantUML**.
+
+The diagrams are intended to communicate:
+
+* Domain relationships
+* Application structure
+* MVC responsibilities
+* Relationships between the main entities
+
+This provides a visual representation of the system in addition to the implementation.
+
+## What This Project Demonstrates
+
+This project demonstrates practical experience with:
+
+* Java backend development
+* Spring Boot application development
+* MVC architecture
+* CRUD business operations
+* Relational database concepts
+* JPA and ORM
+* Repository and service-layer patterns
+* Server-side web applications
+* Form and data validation
+* Automated testing
+* Dependency management with Maven
+* Domain and system modelling
+
+## Business & Process Analysis Perspective
+
+Although this is a software development project, it also demonstrates skills relevant to **Process Analyst and Business Analyst roles**.
+
+The project involves translating a business domain into a working application by:
+
+* Identifying business entities and their relationships
+* Defining business operations and CRUD requirements
+* Structuring application responsibilities across layers
+* Translating business requirements into system functionality
+* Modelling relationships between business objects
+* Applying validation rules to business data
+* Separating business logic from data-access responsibilities
+* Communicating system structure through diagrams
+
+These concepts are relevant to analysing business processes, understanding system requirements, and working with technical teams.
+
+## Project Status
+
+This project is an academic/learning implementation demonstrating a Spring Boot web application, CRUD functionality, database persistence, MVC architecture, testing, and domain modelling.
+
+## Future Improvements
+
+Potential future improvements include:
+
+* API documentation
+* Improved exception handling
+* Additional integration tests
+* Authentication and authorization
+* Improved UI/UX
+* Pagination and search functionality
+* REST API endpoints
+* Automated CI/CD pipeline
+
+```
+
+
+
+That keeps this repository focused on the actual project rather than generated/IDE files.
+```
