@@ -319,9 +319,3 @@ Potential future improvements include:
 * REST API endpoints
 * Automated CI/CD pipeline
 
-```
-
-
-
-That keeps this repository focused on the actual project rather than generated/IDE files.
-```
