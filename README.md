@@ -284,22 +284,6 @@ The diagrams are intended to communicate:
 
 This provides a visual representation of the system in addition to the implementation.
 
-## What This Project Demonstrates
-
-This project demonstrates practical experience with:
-
-* Java backend development
-* Spring Boot application development
-* MVC architecture
-* CRUD business operations
-* Relational database concepts
-* JPA and ORM
-* Repository and service-layer patterns
-* Server-side web applications
-* Form and data validation
-* Automated testing
-* Dependency management with Maven
-* Domain and system modelling
 
 ## Business & Process Analysis Perspective
 
